@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Store Home</title>
+  <link rel="shortcut icon" href="https://material.io/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="bundles/bundle-home.css">
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/6.0.2/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/6.0.2/firebase-auth.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-database.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-storage.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-firestore.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-functions.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+  <!-- DT -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+
+  <style type="text/css">
+    .block {
+        display: inline-block;
+        vertical-align:top;
+    }
+  </style>
+
+</head>
+<body class="home">
+
+  <aside class="shrine-drawer mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
+    <br>
+    <svg class="shrine-logo-drawer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" fill="#000000">
+      <g id="XMLID_2_">
+        <g id="XMLID_4_">
+          <path id="XMLID_5_" d="M17,2H7L2,6.62L12,22L22,6.62L17,2z M16.5,3.58l3.16,2.92H16.5V3.58z M7.59,3.5H15v3H4.34L7.59,3.5z     M11.25,18.1L7.94,13h3.31V18.1z M11.25,11.5H6.96L4.69,8h6.56V11.5z M16.5,12.32 M12.75,18.09V8h6.56L12.75,18.09z"/>
+        </g>
+        <rect id="XMLID_1_" fill="none" width="24" height="24"/>
+      </g>
+    </svg>
+    <!-- <h1 class="shrine-title">i-STORE</h1> -->
+    <p class="store-displayname">…</p>
+    <p class="store-name">…</p>
+    <div class="mdc-drawer__content" id="owner-nav">
+      <nav class="mdc-list">
+        <a class="mdc-list-item nav" href="#">
+          Dashboard
+        </a>
+        <li class="shrine-select-item-divider mdc-list-divider" role="separator"></li>
+        <a class="mdc-list-item nav" href="#">
+          Report
+        </a>
+        <a class="mdc-list-item nav" href="#">
+          Store
+        </a>
+        <a class="mdc-list-item nav" href="#">
+          Inventory
+        </a>
+        <a class="mdc-list-item nav" href="#">
+          User
+        </a>
+        <a class="mdc-list-item nav nav-notification" href="#">
+          Notification
+        </a>
+        <a class="mdc-list-item"></a>
+        <!-- <a class="mdc-list-item nav-logout" href="#">
+          Logout
+        </a> -->
+      </nav>
+    </div>
+
+    <div class="mdc-drawer__content" id="tindera-nav">
+      <nav class="mdc-list">
+        <a class="mdc-list-item nav" href="#">
+          Store
+        </a>
+        <li class="shrine-select-item-divider mdc-list-divider" role="separator"></li>
+        <a class="mdc-list-item nav" href="#">
+          Inventory
+        </a>
+        <a class="mdc-list-item nav nav-notification" href="#">
+          Notification
+        </a>
+        <a class="mdc-list-item"></a>
+        <!-- <a class="mdc-list-item nav-logout" href="#">
+          Logout
+        </a> -->
+      </nav>
+    </div>
+  </aside>
+
+  
+  <div class="shrine-body mdc-drawer-app-content">
+
+    <header class="mdc-top-app-bar mdc-top-app-bar--short">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+          <span class="mdc-top-app-bar__title">I-STORE</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+          <button class="material-icons nav-logout mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">power_settings_new</button>
+        </section>
+      </div>
+    </header>
+
+    <div class="main-content" id="main-content">
+      
+      <div role="progressbar" class="mdc-linear-progress" style="height: 12px;">
+        <div class="mdc-linear-progress__buffering-dots"></div>
+        <div class="mdc-linear-progress__buffer"></div>
+        <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+          <span class="mdc-linear-progress__bar-inner"></span>
+        </div>
+        <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+          <span class="mdc-linear-progress__bar-inner"></span>
+        </div>
+      </div>
+
+      <button class="mdc-fab app-fab--absolute mdc-fab--extended mdc-fab--exited" aria-label="Cart" id="cart-button" style="z-index: 2;">
+        <span class="mdc-fab__icon material-icons">shopping_cart</span>
+        <span class="mdc-fab__label">SOLD OUT</span>
+        <div class="mdc-fab mdc-fab--mini mdc-fab--exited" id="badge-elem" aria-label="Favorite" style="background-color: green; width: 18px; height: 18px; margin-top: -12px; display: none;">
+          <span class="mdc-fab__label" id="cart-item-count"></span>
+        </div>
+      </button>
+
+      <div class="content" id="dashboard" style="padding: 22px;">
+        <br><br>
+        <!-- <div style="display: flex; align-items: center; margin: 8px;">
+          <div class="mdc-card" style="padding: 32px; flex: 1;">
+            <h6 class="mdc-typography--headline5"><strong>Category Overview</strong></h6>
+            <canvas id="categoryChart"></canvas>
+          </div>
+
+          <div class="mdc-card" style="padding: 32px; flex: 1; margin: 8px;">
+            <h6 class="mdc-typography--headline5"><strong>Low Stock</strong></h6>
+            <canvas id="lowStockChart"></canvas>
+          </div>
+        </div> -->
+
+        <div class="mdc-card" style="padding: 32px; flex: 1; margin: 8px;">
+          <h6 class="mdc-typography--headline5"><strong>Category Overview</strong></h6>
+          <canvas id="categoryChart"></canvas>
+        </div>
+
+        <div class="mdc-card" style="padding: 32px; flex: 1; margin: 8px;">
+          <h6 class="mdc-typography--headline5"><strong>Low Stock</strong></h6>
+          <canvas id="lowStockChart"></canvas>
+        </div>
+
+        <br>
+
+        <div class="mdc-card" style="height: 1200px; margin: 8px;">
+          <h6 class="mdc-typography--headline5" style="margin-left: 36px;"><strong>Summary of Most Purchased Items</strong></h6>
+          <div style="display: flex; align-items: center">
+            
+            <div class="mdc-select mdc-select--outlined select-year" style="flex: 1; margin-top: 24px; margin-left: 50px; margin-right: 50px;">
+              <input type="hidden" name="enhanced-select">
+                <i class="mdc-select__dropdown-icon"></i>
+                <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
+                <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
+                  <ul class="mdc-list">
+                    <li class="mdc-list-item" data-value="2018" role="option">2018</li>
+                    <li class="mdc-list-item mdc-list-item--selected"data-value="2019" role="option">2019</li>
+                    <li class="mdc-list-item" data-value="2020" role="option">2020</li>
+                  </ul>
+                </div>
+               <div class="mdc-notched-outline">
+                 <div class="mdc-notched-outline__leading"></div>
+                 <div class="mdc-notched-outline__notch">
+                   <label class="mdc-floating-label">Select year</label>
+                 </div>
+                 <div class="mdc-notched-outline__trailing"></div>
+               </div>
+            </div>
+
+            <div class="mdc-select mdc-select--outlined select-month" style="flex: 1; margin-top: 24px; margin-left: 50px; margin-right: 50px;">
+              <input type="hidden" name="enhanced-select">
+                <i class="mdc-select__dropdown-icon"></i>
+                <div id="month-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label month-selected-text"></div>
+                <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
+                  <ul class="mdc-list" id="list-month-container">
+                    <li class="mdc-list-item" data-value="" role="option">All</li>
+                  </ul>
+                </div>
+               <div class="mdc-notched-outline">
+                 <div class="mdc-notched-outline__leading"></div>
+                 <div class="mdc-notched-outline__notch">
+                   <label class="mdc-floating-label">Select month</label>
+                 </div>
+                 <div class="mdc-notched-outline__trailing"></div>
+               </div>
+            </div>
+
+            <div id="daily_switch" style="flex: 1; margin-left: 50px; margin-top: 24px; margin-right: 50px;">
+              <div class="mdc-switch switch-daily">
+                <div class="mdc-switch__track"></div>
+                <div class="mdc-switch__thumb-underlay">
+                  <div class="mdc-switch__thumb">
+                      <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
+                  </div>
+                </div>
+              </div>
+              <label for="basic-switch">Daily/Weekly</label>
+            </div>
+
+          </div>
+          <br>
+
+          <div style="padding: 48px;">
+            <table id="summary-table" class="hover" >
+              <thead>
+                <tr>
+                  <th id="label_hehe">Label</th>
+                  <th>Product</th>
+                  <th>Sold Items</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <canvas id="chartJSContainer" style="margin: 24px 150px 24px 0px; height: 500px;"></canvas>
+        </div>
+
+        <br>
+
+        <div class="mdc-card" style="margin: 8px;">
+          <h6 class="mdc-typography--headline5" style="margin-left: 36px;"><strong>Recommender</strong></h6>
+
+          <div style="margin-left: 84px;">
+            <span class="mdc-typography--body1">Based on your sale Yesterday</span>
+            <div id="yesterday-card-container" style="padding: 16px;">
+            </div>
+            <span class="mdc-typography--overline" id="yesterday-enough" style="margin-left: 56px;">NOT ENOUGH DATA…</span>
+          </div>
+          <br><br><br>
+          <div style="margin-left: 84px;">
+            <span class="mdc-typography--body1">Based on your sale Last week</span>
+            <div id="lastweek-card-container" style="padding: 16px;"></div>
+            <span class="mdc-typography--overline" id="lastweek-enough" style="margin-left: 56px;">NOT ENOUGH DATA…</span>
+          </div>
+          <div style="padding: 48px;">
+            <h3 class="mdc-typography--body1"><strong>Top 10 Most Purchased Items</strong></h3>
+            <table id="table-most-purchased">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Selling Size</th>
+                  <th>Sold</th>
+                  <th>Stock</th>
+                  <th>Re-order Level</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <br>
+        </div>
+
+
+      </div>
+
+      <div class="content" id="store">
+        <br><br>
+        <div style="padding-left: 32px; padding-top: 24px;display: none;">
+          <div class="mdc-switch switch-product">
+            <div class="mdc-switch__track"></div>
+            <div class="mdc-switch__thumb-underlay">
+              <div class="mdc-switch__thumb">
+                  <input type="checkbox" id="basic-switchh" class="mdc-switch__native-control" role="switch">
+              </div>
+            </div>
+          </div>
+          <label for="basic-switchh">View by products</label>
+        </div>
+        <br>
+
+        <div id="product-divider" style="padding: 24px;">
+          <table id="list-product-table">
+            <thead>
+              <tr>
+                <th class="mdc-typography--body1">Product</th>
+                <th class="mdc-typography--body1">Selling Size</th>
+                <th class="mdc-typography--body1">Measurement</th>
+                <th class="mdc-typography--body1">Category</th>
+                <th class="mdc-typography--body1">Stock</th>
+                <th class="mdc-typography--body1">Re-order Level</th>
+                <th class="mdc-typography--body1">Sell</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        
+        <div id="category-divider" style="display: none;">
+
+          <div class="mdc-card mdc-elevation--z5" style="display: flex; position: absolute; right: 0; margin-right: 58px; z-index: 5;">
+            <div class="mdc-text-field mdc-text-field--outlined">
+              <input class="mdc-text-field__input" id="search-category">
+              <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                  <label class="mdc-floating-label">Search category</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ul class="mdc-image-list mdc-image-list--masonry product-list" id="product-placeholder"></ul>
+          </div>
+          <div id="no_category" style="display: none;">
+            <br><br><br>
+            <center><h5 class="mdc-typography--headline5 center_text">No category found...</h5></center>
+          </div>
+          <br>
+        </div>
+      </div>
+
+      <div class="content" id="inventory">
+        <br><br><br>
+        <div class="mdc-tab-bar" role="tablist">
+          <div class="mdc-tab-scroller">
+            <div class="mdc-tab-scroller__scroll-area">
+              <div class="mdc-tab-scroller__scroll-content">
+
+                <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                  <span class="mdc-tab__content">
+                    <span class="mdc-tab__icon material-icons" aria-hidden="true">shopping_basket</span>
+                    <span class="mdc-tab__text-label">Product</span>
+                  </span>
+                  <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                  </span>
+                  <span class="mdc-tab__ripple"></span>
+                </button>
+
+                <button class="mdc-tab" role="tab" tabindex="0">
+                  <span class="mdc-tab__content">
+                    <span class="mdc-tab__icon material-icons" aria-hidden="true">category</span>
+                    <span class="mdc-tab__text-label">Category</span>
+                  </span>
+                  <span class="mdc-tab-indicator">
+                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                  </span>
+                  <span class="mdc-tab__ripple"></span>
+                </button>
+
+                <button class="mdc-tab" role="tab" tabindex="0">
+                  <span class="mdc-tab__content">
+                    <span class="mdc-tab__icon material-icons" aria-hidden="true">local_offer</span>
+                    <span class="mdc-tab__text-label">Measurement</span>
+                  </span>
+                  <span class="mdc-tab-indicator">
+                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                  </span>
+                  <span class="mdc-tab__ripple"></span>
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="padding: 32px;">
+          
+          <div id="category_content" style="display: none;">
+            <button class="mdc-button mdc-button--outlined" id="add-category">
+              <span class="mdc-button__label">NEW CATEGORY</span>
+            </button>
+            <br><br><br>
+            <table id="category_table" class="hover">
+              <thead>
+                <tr>
+                  <th class="mdc-typography--body1">Category Name</th>
+                  <th class="mdc-typography--body1"># of Products</th>
+                  <th class="mdc-typography--body1">Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <br><br><br>
+            <table id="subcategory_table" class="hover">
+              <thead>
+                <tr>
+                  <th class="mdc-typography--body2">Sub-category Name</th>
+                  <th class="mdc-typography--body2">Category</th>
+                  <th># of Products</th>
+                  <th class="mdc-typography--body2">Date Created</th>
+                  <th class="mdc-typography--body2">Action</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+
+          <div id="price_content" style="display: none;">
+            <button class="mdc-button mdc-button--outlined" id="add-measurement">
+              <span class="mdc-button__label">NEW MEASUREMENT</span>
+            </button>
+            <br><br><br>
+            <table id="price_table" class="hover">
+              <thead>
+                <tr>
+                  <th class="mdc-typography--body1">Measurement</th>
+                  <th class="mdc-typography--body1">Date Created</th>
+                  <th class="mdc-typography--body1">Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div id="product_content">
+            <button class="mdc-button mdc-button--outlined" id="add-product">
+              <span class="mdc-button__label">NEW PRODUCT</span>
+            </button>
+            <br><br><br>
+            <table id="product_table" class="hover">
+              <thead>
+                <tr>
+                  <th class="mdc-typography--body1">Product Name</th>
+                  <th class="mdc-typography--body1">Selling Size</th>
+                  <th class="mdc-typography--body1">Stock</th>
+                  <th class="mdc-typography--body1">Re-order Level</th>
+                  <th class="mdc-typography--body1">Category</th>
+                  <th class="mdc-typography--body1">Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="content" id="user">
+        <br>
+        <main class="crane-main">
+          <div>
+            <h3 style="display: inline-block;" class="mdc-typography--headline3"><strong id="headline-register">Add Store Owner</strong></h3>
+
+            <div style="display: inline-block; margin-left: 48px;">
+              <div class="mdc-switch switch-user">
+                <div class="mdc-switch__track"></div>
+                <div class="mdc-switch__thumb-underlay">
+                  <div class="mdc-switch__thumb">
+                      <input type="checkbox" id="user-switch" class="mdc-switch__native-control" role="switch">
+                  </div>
+                </div>
+              </div>
+              <label for="user-switch">Register as Seller</label>
+            </div>
+          </div>
+          
+          <form id="crane-shipping-form">
+            <div class="crane-row">
+              <div class="crane-field">
+                <div class="crane-text-field mdc-text-field mdc-text-field--box">
+                  <input class="crane-text-field__input mdc-text-field__input" name="name" id="crane-name-input" type="text" required>
+                  <label class="crane-floating-label mdc-floating-label" for="crane-name-input">
+                    Name
+                  </label>
+                  <div class="mdc-line-ripple"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="crane-row">
+              <div class="crane-field">
+                <div class="crane-text-field mdc-text-field mdc-text-field--box">
+                  <input class="crane-text-field__input mdc-text-field__input" autocomplete="username" name="username" id="crane-email-input" type="email" required>
+                  <label class="crane-floating-label mdc-floating-label" for="crane-email-input">
+                    Username (email)
+                  </label>
+                  <div class="mdc-line-ripple"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="crane-row">
+              <div class="crane-field">
+                <div class="crane-text-field mdc-text-field mdc-text-field--box">
+                  <input class="crane-text-field__input mdc-text-field__input" name="phoneNumber" id="crane-phone-input" type="text" maxlength="11" required>
+                  <label class="crane-floating-label mdc-floating-label" for="crane-phone-input">
+                    Phone number (11 digits)
+                  </label>
+                  <div class="mdc-line-ripple"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="crane-row">
+              <div class="crane-field">
+                <div class="crane-text-field mdc-text-field mdc-text-field--box">
+                  <input class="crane-text-field__input mdc-text-field__input" name="storeName" id="crane-store-input" type="text" required>
+                  <label class="crane-floating-label mdc-floating-label" for="crane-store-input">
+                    Store Name
+                  </label>
+                  <div class="mdc-line-ripple"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="crane-row">
+              <div class="crane-field">
+                <div class="crane-text-field mdc-text-field mdc-text-field--box">
+                  <input autocomplete="new-password" class="crane-text-field__input mdc-text-field__input" name="password" id="crane-password-input" type="password" required minlength="6">
+                  <label class="crane-floating-label mdc-floating-label" for="crane-password-input">
+                    Password
+                  </label>
+                  <div class="mdc-line-ripple"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="crane-row">
+              <div class="crane-field">
+                <div class="crane-text-field mdc-text-field mdc-text-field--box">
+                  <input autocomplete="new-password" class="crane-text-field__input mdc-text-field__input" name="confirm" id="crane-confirm-input" type="password" required minlength="6">
+                  <label class="crane-floating-label mdc-floating-label" for="crane-confirm-input">
+                    Confirm Password
+                  </label>
+                  <div class="mdc-line-ripple"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="crane-row crane-row--submit">
+              <button type="submit" class="crane-button mdc-button mdc-button--raised" id="submit-user">Save</button>
+            </div>
+          </form>
+        </main>
+      </div>
+
+      <div class="content" id="report">
+        
+        <h3 class="mdc-typography--headline3"><strong>Sales Report</strong></h3>
+
+        <p class="mdc-typography--body1">Filter Date:</p>
+        <div class="mdc-text-field" style="width: 250px;">
+          <input type="date" class="mdc-text-field__input" id="sales-start" value="null" name="sales-start">
+          <label class="mdc-floating-label" for="sales-start">From Date</label>
+          <div class="mdc-line-ripple"></div>
+        </div>
+
+        <div class="mdc-text-field" style="width: 250px; margin-left: 12px;">
+          <input type="date" class="mdc-text-field__input" id="sales-end" value="null" name="sales-end">
+          <label class="mdc-floating-label" for="sales-end">To Date</label>
+          <div class="mdc-line-ripple"></div>
+        </div>
+
+        <button class="mdc-button mdc-button--raised" id="go" style="margin-left: 12px;">GO</button>
+
+        <br><br><br>
+        <table id="reports-table">
+          <thead>
+            <tr>
+              <th>Quantity Sold</th>
+              <th>Seller</th>
+              <th>Date Sold</th>
+              <th>Products</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <br><br><br>
+        <div id="log_container" style="margin-left: 32px; margin-top: -48px;"></div>
+
+      </div>
+
+      <div class="content" id="notification">
+        <h3 class="mdc-typography--headline3"><strong>Stock Alert</strong></h3>
+        <h6 class="mdc-typography--headline5" style="color: #f1c40f; text-decoration: underline;"><strong>Re-stock</strong></h6>
+        <table id="reorder-table" class="display">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <h6></h6>
+        <hr>
+
+        <h6 class="mdc-typography--headline5" style="color: #e74c3c; text-decoration: underline;"><strong>Out of Stock</strong></h6>
+        <table id="outstock-table" class="display">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <h6></h6>
+        <hr>
+
+        <h6 class="mdc-typography--headline5" style="color: #3498db; text-decoration: underline;"><strong>Indemand</strong></h6>
+        <table id="indemand-table" class="display">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <h6></h6>
+        <hr>
+
+        <h6 class="mdc-typography--headline5" style="color: #f39c12; text-decoration: underline;"><strong>Unsellable</strong></h6>
+        <table id="unsellable-table" class="display">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <h6></h6>
+        <hr>
+        
+      </div>
+
+    </div>
+
+  </div>
+
+
+<div class="mdc-dialog dialog-logout"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Logout<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        Are you sure, you want to logout?
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">No</span>
+        </button>
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" id="logout">
+          <span class="mdc-button__label">Yes</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-write-sub"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Update Sub Category<!--
+   --></h2>
+      <div class="mdc-dialog__content">
+        <br>
+        <div class="mdc-text-field mdc-text-field--outlined sub-category-name-name mdc-text-field--dense">
+          <input class="mdc-text-field__input" id="text-field-hero-input">
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+              <label for="text-field-hero-input" class="mdc-floating-label">Sub Category</label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">Cancel</span>
+        </button>
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" id="update-sub">
+          <span class="mdc-button__label">Update</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-sold"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Sold Items<!--
+   --></h2>
+      <div class="mdc-dialog__content">
+        <table id="sold-table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Sold</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-restock"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Re-stock<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        How many stock will you add for<br> <span id="notif-product-name">Product name</span><br>
+        <p class="mdc-typography--overline">Remaining: <strong><span id="remaining"></span></p></strong>
+        <p class="mdc-typography--overline">Re-order Level: <strong><span id="threshold"></span></p></strong>
+        <div class="mdc-text-field">
+          <input class="mdc-text-field__input" type="number" id="input-restock">
+          <div class="mdc-line-ripple"></div>
+          <label for="input-restock" class="mdc-floating-label">Stock</label>
+        </div>
+
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">No</span>
+        </button>
+        <button type="button" class="mdc-button mdc-dialog__button" id="done-restock">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-sub-category"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Sub Category<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        Sub categories for <span id="parent_category"></span><br><br>
+
+        <div class="mdc-text-field mdc-text-field--outlined sub-category-name mdc-text-field--dense">
+          <input class="mdc-text-field__input" id="text-field-hero-input">
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+              <label for="text-field-hero-input" class="mdc-floating-label">Category</label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+        <button class="mdc-button mdc-button--dense mdc-button--raised" id="add-sub-category" style="margin-left: 8px;">
+          <span class="mdc-button__label" id="sub-text">ADD</span>
+          <i class="material-icons mdc-button__icon" id="sub-action" aria-hidden="true">add</i>
+        </button>
+        <br><br>
+
+        <div class="mdc-chip-set mdc-chip-set--input mdc-chip-set--choice" id="chip-category"></div>
+        <h6 class="mdc-typography--headline6" id="no_sub" style="display: none;">No sub category found…</h6>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">DONE</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-information"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Product Information<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <center>
+          <img src="assets/no_image.jpg" style="display: none;" id="product_image_info" width="250" height="250" style="border-radius: 8px;">
+          <br>
+          <h4 class="mdc-typography--headline4" id="product_name" style="margin-top: -1px;">Product name</h4>
+          <p class="mdc-typography--body2">Stock: <strong id="product_stock" style="margin-top: -50px;">Out of stock</strong></p>
+          <p class="mdc-typography--body1" id="product_description">Product description</p>
+          <br>
+          <h6 class="mdc-typography--headline6" id="product_category" style="margin-top: -1px;">Category</h6>
+          <p class="mdc-typography--overline" id="product_type" style="margin-top: -50px;">Type</p>
+          <p class="mdc-typography--overline" id="product_expiration" style="margin-top: -1px;">Expiration</p>
+          <div id="cart_container" style="display: none;">
+            
+            <br>
+            <div class="mdc-text-field input_stock">
+              <input class="mdc-text-field__input" type="number" id="input_stock">
+              <div class="mdc-line-ripple"></div>
+              <label for="input_stock" class="mdc-floating-label">Stock</label>
+            </div>
+            <br><br>
+            <button class="mdc-button mdc-button--raised" id="add_to_cart">
+              <span class="mdc-button__label">ADD TO CART</span>
+              <i class="material-icons mdc-button__icon" aria-hidden="true">add_shopping_cart</i>
+            </button>
+            <br><br>
+
+          </div>
+        </center>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">CANCEL</span>
+        </button>
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close" id="info_back" style="display: none;">
+          <span class="mdc-button__label">BACK</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-cart"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Cart<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <table id="cart-table"> <!-- TODO: Design this table with no length -->
+          <thead>
+            <tr>
+              <th>Product name</th>
+              <th>Total Stock</th>
+              <th>Cart stock</th>
+              <th width="50%">Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">DISMISS</span>
+        </button>
+        <button type="button" class="mdc-button mdc-dialog__button mdc-button--raised" data-mdc-dialog-action="accept" id="btn-checkout">
+          <span class="mdc-button__label">CHECKOUT</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-price"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title">Measurement</h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+
+        <p style="display: none;" class="mdc-typography--body2">Set price (Peso) of <span id="price_product_name">product name</span></p>
+
+        <div class="mdc-text-field mdc-text-field--with-leading-icon">
+          <i class="material-icons mdc-text-field__icon">loyalty</i>
+          <input type="text" class="mdc-text-field__input" id="price-input">
+          <div class="mdc-line-ripple"></div>
+          <label class="mdc-floating-label">Name</label>
+        </div>
+
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">No</span>
+        </button>
+        <button type="submit" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" id="set-price">
+          <span class="mdc-button__label">Yes</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-add-product"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="dialog-add-product-title"><!--
+     -->Add Product<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <p class="mdc-typography--body2" id="category-text"></p>
+        <form id="form-product">
+
+          <div class="mdc-text-field product-name" style="width: 250px; margin-bottom: 8px; display: block;">
+            <input type="text" class="mdc-text-field__input" id="product-name" name="product-name" required>
+            <label class="mdc-floating-label" for="product-name">Product name</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+
+          <div class="mdc-select select-category" style="margin-bottom: 8px; display: block;">
+            <input type="hidden" name="product-category" id="product-category" required>
+            <i class="mdc-select__dropdown-icon"></i>
+            <div id="demo-selected-category" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
+            <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
+              <ul class="mdc-list" id="select-category-container"></ul>
+            </div>
+            <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Category</span>
+            <div class="mdc-line-ripple"></div>
+          </div>
+
+          <div class="mdc-chip-set mdc-chip-set--choice mdc-chip-set--input" id="chip-inventory">
+          </div>
+
+          <div class="mdc-text-field product-stock" style="width: 250px; margin-bottom: 8px; display: block;">
+            <input type="number" class="mdc-text-field__input" id="product-stock" name="product-stock" required>
+            <label class="mdc-floating-label" for="product-stock">Stock</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+
+          <div class="mdc-text-field product-threshold" style="width: 250px; margin-bottom: 8px; display: block;">
+            <input type="number" class="mdc-text-field__input" id="product-threshold" name="product-threshold">
+            <label class="mdc-floating-label" for="product-threshold">Re-order Level</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+
+          <div class="mdc-select select-type" style="margin-bottom: 8px; display: block;">
+            <input type="hidden" name="product-type" id="product-type" required>
+            <i class="mdc-select__dropdown-icon"></i>
+            <div id="demo-selected-type" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-type demo-selected-text"></div>
+            <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
+              <ul class="mdc-list" id="measurement-list">
+                <!-- <li class="mdc-list-item" data-value="packs" role="option">Packs</li>
+                <li class="mdc-list-item" data-value="sachet" role="option">Sachet</li>
+                <li class="mdc-list-item" data-value="bottle" role="option">Bottle</li> -->
+              </ul>
+            </div>
+            <span id="demo-type" class="mdc-floating-label mdc-floating-label--float-above">Measurement</span>
+            <div class="mdc-line-ripple"></div>
+          </div>
+
+          <div class="mdc-text-field product-expiration" style="width: 250px; margin-bottom: 8px; display: block;">
+            <input type="date" class="mdc-text-field__input" id="product-expiration" value="null" name="product-expiration">
+            <label class="mdc-floating-label" for="product-expiration">Expiration</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+
+          <div style="margin-bottom: 8px; display: block;">
+            <div class="mdc-text-field product-sizes mdc-text-field--dense" style="width: 170px;">
+              <input type="text" class="mdc-text-field__input" id="product-sizes" name="product-sizes">
+              <label class="mdc-floating-label" for="product-sizes">Product size</label>
+              <div class="mdc-line-ripple"></div>
+            </div>
+            <button type="button" class="mdc-button mdc-button--raised" id="add-product-size" style="margin-left: 8px;" disabled="true">
+              <span class="mdc-button__label" id="size-text">ADD</span>
+            </button>
+          </div>
+          
+          <div class="mdc-chip-set mdc-chip-set--input mdc-chip-set--choice" id="chip-sizes" style="width: 250px; margin-bottom: 8px; display: none;"></div>
+
+          <div class="mdc-text-field mdc-text-field--textarea product-description">
+            <textarea id="textarea" class="mdc-text-field__input" name="product-description" rows="3" cols="25"></textarea>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="textarea" class="mdc-floating-label">Description (optional)</label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+
+          <div style="display: none;">
+            <p class="mdc-typography--overline">Product image (Optional)</p>
+            <input type="file" id="product-image" name="image" accept="image/*" style="width: 100px;"> <br><br>
+            </center>
+            <div style="position: relative; height: 130px;">
+              <center><img style="position: relative;" id="product_image" src="assets/no_image.jpg" class="images" width="110" height="110" alt="Product image" /></center>
+              <center><button style="position: relative; margin-top: -140px; display: none;" type="button" class="mdc-button mdc-button--dense button-delete-image">REMOVE</button></center>
+            </div>
+            <br>
+          </div>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">CANCEL</span>
+        </button>
+        <button type="submit" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" id="submit-product">
+          <span class="mdc-button__label">SUBMIT</span>
+        </button>
+        </form>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-products"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title"><!--
+     -->Products for <span id="category-title"></span><!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <span class="mdc-typography--body2">Filter by Sub Category</span>:
+        <div class="mdc-chip-set mdc-chip-set--choice mdc-chip-set--input" id="chip-product"></div>
+        <br>
+        <table id="product-category_table">
+          <thead>
+            <tr>
+              <th class="mdc-typography--body1">Product Name</th>
+              <th class="mdc-typography--body1">Selling Size</th>
+              <th class="mdc-typography--body1">Stock</th>
+              <th class="mdc-typography--body1">Re-order Level</th>
+              <th class="mdc-typography--body1">Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">CANCEL</span>
+        </button>
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" id="button-add-to-cart" style="display: none;">
+          <span class="mdc-button__label">DONE</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog dialog-add-category"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="category-dialog-title"><!--
+     -->Add Category<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <form id="add-category-form">
+          <br>
+          <center>
+          <div class="mdc-text-field category-name">
+            <input type="text" class="mdc-text-field__input" id="category-input" name="category-input" required>
+            <label class="mdc-floating-label" for="category-input">Category name</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+          <br>
+          </center>
+
+          <div style="display: none;">
+            <br>
+            <p class="mdc-typography--overline">Category image (Optional)</p>
+            <input type="file" id="category-image" name="image" accept="image/*"> <br><br>
+            <div style="position: relative; height: 130px;">
+              <center><img style="position: relative;" id="image" src="assets/no_image.jpg" class="images" width="110" height="110" alt="Category image" /></center>
+              <center><button style="position: relative; margin-top: -140px; display: none;" type="button" class="mdc-button mdc-button--dense button-delete-image">REMOVE</button></center>
+            </div>
+          </div>
+          
+          
+          
+        
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <span class="mdc-button__label">CANCEL</span>
+        </button>
+        <button type="submit" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" id="button-category-submit">
+          <span class="mdc-button__label">SUBMIT</span>
+        </button>
+        </form>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-snackbar snackbar-no-product">
+  <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__label"
+         role="status"
+         aria-live="polite">
+      You have no product for this category.
+    </div>
+    <div class="mdc-snackbar__actions">
+      <button type="button" class="mdc-button mdc-snackbar__action" id="snackbar-action">ADD PRODUCT</button>
+    </div>
+  </div>
+</div>
+
+<div class="mdc-snackbar snackbar-upload">
+  <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__label mdc-typography--headline6"
+         role="status"
+         aria-live="polite">
+    </div>
+  </div>
+</div>
+
+<div class="mdc-snackbar snackbar-undo">
+  <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__label"
+         role="status"
+         aria-live="polite">
+      Notification has been cleared.
+    </div>
+    <div class="mdc-snackbar__actions">
+      <button type="button" class="mdc-button mdc-snackbar__action" id="snackbar-undo-action">UNDO</button>
+    </div>
+  </div>
+</div>
+
+<div class="mdc-snackbar snackbar-subcategory">
+  <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__label"
+         role="status"
+         aria-live="polite">
+      Subcategory <span id="name_sub_category"></span> has been deleted.
+    </div>
+    <div class="mdc-snackbar__actions">
+      <button type="button" class="mdc-button mdc-snackbar__action" id="snackbar-undo-category">UNDO</button>
+    </div>
+  </div>
+</div>
+
+<script src="bundles/bundle-home.js" async></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Store Login</title>
+  <link rel="shortcut icon" href="https://material.io/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" href="bundles/bundle-login.css">
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/6.0.2/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/6.0.2/firebase-auth.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-database.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-storage.js"></script>
+  <script defer src="/__/firebase/6.0.2/firebase-functions.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+</head>
+<body class="shrine-login">
+
+  <div role="progressbar" class="mdc-linear-progress" style="height: 12px;">
+    <div class="mdc-linear-progress__buffering-dots"></div>
+    <div class="mdc-linear-progress__buffer"></div>
+    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+      <span class="mdc-linear-progress__bar-inner"></span>
+    </div>
+    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+      <span class="mdc-linear-progress__bar-inner"></span>
+    </div>
+  </div>
+
+  <section class="header">
+    <svg class="shrine-logo" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+       width="48px" height="48px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" fill="#000000" focusable="false">
+      <g>
+        <g>
+          <path d="M17,2H7L2,6.62L12,22L22,6.62L17,2z M16.5,3.58l3.16,2.92H16.5V3.58z M7.59,3.5H15v3H4.34L7.59,3.5z
+             M11.25,18.1L7.94,13h3.31V18.1z M11.25,11.5H6.96L4.69,8h6.56V11.5z M16.5,12.32 M12.75,18.09V8h6.56L12.75,18.09z"/>
+        </g>
+        <rect fill="none" width="24" height="24"/>
+      </g>
+    </svg>
+    <h1>i-STORE</h1>
+    <h4 class="mdc-typography--headline4" id="action-text">SIGN IN</h4>
+  </section>
+
+  <form action="home.html" method="POST" id="login-form">
+    <div class="mdc-text-field username">
+      <input type="email" class="mdc-text-field__input" autocomplete="username" id="username-input" name="username" required>
+      <label class="mdc-floating-label" for="username-input">Username</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <div class="mdc-text-field password">
+      <input type="password" class="mdc-text-field__input" autocomplete="current-password" id="password-input" name="password" required minlength="6">
+      <label class="mdc-floating-label" for="password-input">Password</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <div class="button-container">
+      <button type="button" class="mdc-button mdc-button--dense cancel" id="button-forgot">
+        <span class="mdc-button__label">
+          FORGOT PASSWORD
+        </span>
+      </button>
+      <button type="submit" class="mdc-button mdc-button--raised next">
+        <span class="mdc-button__label">
+          Next
+        </span>
+      </button>
+    </div>
+  </form>
+
+  <form action="home.html" method="POST" id="register-form" style="display: none;">
+    <center>
+    <div class="mdc-text-field">
+      <input type="text" class="mdc-text-field__input" autocomplete="username" id="name-input" name="name" required>
+      <label class="mdc-floating-label" for="name-input">Full name</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <div class="mdc-text-field">
+      <input type="email" class="mdc-text-field__input" autocomplete="username" id="username-input" name="username" required>
+      <label class="mdc-floating-label" for="username-input">Username (email)</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <div class="mdc-text-field">
+      <input type="text" class="mdc-text-field__input" autocomplete="username" id="phoneNumber-input" name="phoneNumber" maxlength="11" required>
+      <label class="mdc-floating-label" for="phoneNumber-input">Phone number (11 digits)</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <div class="mdc-text-field">
+      <input type="text" class="mdc-text-field__input" autocomplete="username" id="storeName-input" name="storeName" maxlength="11" required>
+      <label class="mdc-floating-label" for="storeName-input">Store name</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <div class="mdc-text-field">
+      <input type="password" class="mdc-text-field__input" autocomplete="username" id="password-input" name="password" minlength="6" required>
+      <label class="mdc-floating-label" for="password-input">Password</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <div class="mdc-text-field">
+      <input type="password" class="mdc-text-field__input" autocomplete="username" id="confirm-input" name="confirm" minlength="6" required>
+      <label class="mdc-floating-label" for="confirm-input">Confirm Password</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    </center>
+    <div class="button-container">
+      <button type="submit" class="mdc-button mdc-button--raised next" id="submit-user">
+        <span class="mdc-button__label">
+          SUBMIT
+        </span>
+      </button>
+    </div>
+  </form>
+
+  <br><br><br><br>
+  <center>
+    <button type="button" class="mdc-button mdc-button--outlined register" id="button-register">
+      <span class="mdc-button__label">
+        REGISTER
+      </span>
+    </button>
+  </center>
+  <br><br>
+
+  <script src="bundles/bundle-login.js" async></script>
+
+  <div class="mdc-snackbar">
+    <div class="mdc-snackbar__surface">
+      <div class="mdc-snackbar__label"
+           role="status"
+           aria-live="polite">
+        One moment. Signing you in...
+      </div>
+      <div class="mdc-snackbar__actions">
+        <button type="button" class="mdc-button mdc-snackbar__action">OKAY</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mdc-dialog dialog-forgot"
+       role="alertdialog"
+       aria-modal="true"
+       aria-labelledby="my-dialog-title"
+       aria-describedby="my-dialog-content">
+    <div class="mdc-dialog__container">
+      <div class="mdc-dialog__surface">
+        <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+        <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+       -->Forgot Password<!--
+     --></h2>
+        <div class="mdc-dialog__content" id="my-dialog-content">
+          Enter your email to reset <br>your password <br>
+          <center>
+          <form id="reset-form">
+          <div class="mdc-text-field email">
+            <input type="email" class="mdc-text-field__input" autocomplete="username" id="email-input" name="email">
+            <label class="mdc-floating-label" for="email-input">Email</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+          </center>
+
+        </div>
+        <footer class="mdc-dialog__actions">
+          <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+            <span class="mdc-button__label">CANCEL</span>
+          </button>
+          <button type="button" type="submit" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" id="submit-email">
+            <span class="mdc-button__label">DONE</span>
+          </button>
+        </footer>
+        </form>
+      </div>
+    </div>
+    <div class="mdc-dialog__scrim"></div>
+  </div>
+
+</body>
+</html>
